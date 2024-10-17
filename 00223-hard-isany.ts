@@ -11,4 +11,4 @@ type cases = [
 ];
 
 // ============= Your Code Here =============
-type IsAny<T> = Equal<T, any>;
+type IsAny<T> = 0 extends (1 & T) ? true : false;
