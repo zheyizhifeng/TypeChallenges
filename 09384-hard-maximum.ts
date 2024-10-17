@@ -9,4 +9,13 @@ type cases = [
 
 
 // ============= Your Code Here =============
-type Maximum<T extends any[]> = any
+type Maximum<
+  T extends any[],
+  U = T[number],
+  N extends unknown[] = [],
+> = T extends []
+  ? never
+  : Equal<U, N["length"]> extends true
+    ? U
+    : Maximum<T, Exclude<U, N['length']>, [...N, unknown]>;
+    // " 1|20|200|150 extends 20 ? never : U " ==>> " 1|200|150 "
